@@ -4,6 +4,7 @@
 #include <sys/wait.h>
 
 int main(void) {
+    printf("%d \n", getpid());
     int n;
     printf("inserire numero di processi da creare:\n");
     scanf("%d", &n);
@@ -17,11 +18,9 @@ int main(void) {
         if (pid == 0) {
             printf("son n%d pid:%d\n", i, getpid());
             printf("father pid:%d\n", getppid());
-            break;
+            return 0;
         }
+        wait(NULL);
     }
-
-    wait(NULL);
-
     return 0;
 }
